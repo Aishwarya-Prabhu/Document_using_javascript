@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/main.js | package.json</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/neu-mis-info6150-spring-2019/assignment-5-Aishwarya-Prabhu"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  </ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/main.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">
+/**
+ * @desc Assignment to implement binary search, bubble sort and palindrome
+ */
+
+/**
+ * @see https://www.w3schools.com/js/js_function_apply.asp
+ */
+/**
+* @param {*} array 
+* @param {*} searchNum 
+*/
+function binarySearch(array, searchNum){
+    /**
+     * @type {number}
+     */
+    let firstValue  = 0,
+        lastValue   = array.length - 1,
+        midpoint = Math.floor((lastValue + firstValue)/2);
+
+    while(array[midpoint] != searchNum &amp;&amp; firstValue &lt; lastValue)
+    {
+       if (searchNum &lt; array[midpoint])
+        {
+            lastValue = midpoint - 1;
+        } 
+      else if (searchNum &gt; array[midpoint])
+        {
+            firstValue = midpoint + 1;
+        }
+        midpoint = Math.floor((lastValue + firstValue)/2);
+    }
+
+ return (array[midpoint] != searchNum) ? -1 : midpoint;
+}
+
+/**
+ * @experimental testing the functions using values
+ */
+let array = [1, 2, 3, 4, 5, 7, 8, 9];
+console.log(&quot;Binary Search&quot;);
+console.log(binarySearch(array, 3));   
+console.log(binarySearch(array, 9));
+
+/**
+ * @see https://www.w3schools.com/js/js_function_apply.asp
+ */
+/**
+* @param {*} array 
+*/
+function bubbleSort(array)
+{
+    /**
+     * @type {number}
+     */
+    var swapp;
+    var n = array.length-1;
+    var x=array;
+    do {
+        swapp = false;
+        for (var i=0; i &lt; n; i++)
+        {
+            if (x[i] &gt; x[i+1])
+            {
+               var temp = x[i];
+               x[i] = x[i+1];
+               x[i+1] = temp;
+               swapp = true;
+            }
+        }
+        n--;
+    } while (swapp);
+ return x; 
+}
+
+/**
+ * @experimental testing the functions using values
+ */
+console.log(&quot;Bubble Sort&quot;);
+console.log(bubbleSort([12, 345, 4, 546, 122, 84, 98, 64, 9, 1, 3223, 455, 23, 234, 213]));
+
+/**
+ * @see https://www.w3schools.com/js/js_function_apply.asp
+ */
+/**
+* @param {*} str
+*/
+function palindrome(str){
+    /**
+     * @type {string}
+     */
+    var newString = str.toLowerCase().replace(/[^a-zA-Z0-9]+/g,&apos;&apos;);
+    /**
+     * @type {number}
+     */
+ &#xA0;&#xA0;&#xA0;&#xA0;var count = 0;
+ &#xA0;&#xA0;&#xA0;&#xA0;if(newString===&quot;&quot;) {
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;console.log(&quot;The string is empty&quot;);
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return false;
+ &#xA0;&#xA0;&#xA0;&#xA0;} 
+ &#xA0;&#xA0;&#xA0;&#xA0;if ((newString.length) % 2 === 0) {
+ &#xA0;&#xA0;&#xA0;&#xA0;if ((newString.length) % 2 === 0) {
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;count = (newString.length) / 2;
+ &#xA0;&#xA0;&#xA0;&#xA0;} else {
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if (newString.length === 1) {
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;console.log(&quot;The string is palindrome&quot;);
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return true;
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;} else {
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;count = (newString.length - 1) / 2;
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+ &#xA0;&#xA0;&#xA0;&#xA0;}
+ &#xA0;&#xA0;&#xA0;&#xA0;for (var x = 0; x &lt; count; x++) {
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;if (newString[x] != newString.slice(-1-x)[0]) {
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;console.log(&quot;The string is not palindrome&quot;);
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;return false;
+ &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}
+ &#xA0;&#xA0;&#xA0;&#xA0;}
+ &#xA0;&#xA0;&#xA0;&#xA0;console.log(&quot;The string is palindrome&quot;);
+ &#xA0;&#xA0;&#xA0;&#xA0;return true;
+ }
+}
+ /**
+ * @experimental testing the functions using values
+ */
+console.log(&quot;Palindrome or Not&quot;)
+palindrome(&apos;madam&apos;);
+palindrome(&apos;noon&apos;);
+palindrome(&apos;fox&apos;);
+palindrome(&apos;aish&apos;);
+palindrome(&apos;&apos;);
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
